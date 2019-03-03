@@ -1,0 +1,362 @@
+[
+{
+    "id": 3188434,
+    "name": "Uzice",
+    "country": "RS",
+    "coord": {
+      "lon": 19.84878,
+      "lat": 43.858608
+    }
+  },
+  {
+    "id": 787607,
+    "name": "Novi Beograd",
+    "country": "RS",
+    "coord": {
+      "lon": 20.42417,
+      "lat": 44.805561
+    }
+  },
+  {
+    "id": 3189595,
+    "name": "Subotica",
+    "country": "RS",
+    "coord": {
+      "lon": 19.66667,
+      "lat": 46.099998
+    }
+  },
+  {
+    "id": 3194360,
+    "name": "Novi Sad",
+    "country": "RS",
+    "coord": {
+      "lon": 19.836941,
+      "lat": 45.251671
+    }
+  },
+  {
+    "id": 783814,
+    "name": "Zrenjanin",
+    "country": "RS",
+    "coord": {
+      "lon": 20.381941,
+      "lat": 45.38361
+    }
+  },
+  {
+    "id": 784136,
+    "name": "Vrsac",
+    "country": "RS",
+    "coord": {
+      "lon": 21.30361,
+      "lat": 45.116669
+    }
+  },
+  {
+    "id": 789128,
+    "name": "Kragujevac",
+    "country": "RS",
+    "coord": {
+      "lon": 20.91667,
+      "lat": 44.01667
+    }
+  },
+  {
+    "id": 785756,
+    "name": "Smederevo",
+    "country": "RS",
+    "coord": {
+      "lon": 20.93,
+      "lat": 44.662781
+    }
+  },
+  {
+    "id": 3190103,
+    "name": "Sremska Mitrovica",
+    "country": "RS",
+    "coord": {
+      "lon": 19.612221,
+      "lat": 44.976391
+    }
+  },
+  {
+    "id": 784141,
+    "name": "Vrnjacka Banja",
+    "country": "RS",
+    "coord": {
+      "lon": 20.9,
+      "lat": 43.616669
+    }
+  },
+  {
+    "id": 3190342,
+    "name": "Sombor",
+    "country": "RS",
+    "coord": {
+      "lon": 19.112221,
+      "lat": 45.77417
+    }
+  },
+  {
+    "id": 792078,
+    "name": "Cacak",
+    "country": "RS",
+    "coord": {
+      "lon": 20.34972,
+      "lat": 43.891392
+    }
+  },
+  {
+    "id": 3191376,
+    "name": "Sabac",
+    "country": "RS",
+    "coord": {
+      "lon": 19.690001,
+      "lat": 44.74667
+    }
+  },
+  {
+    "id": 784227,
+    "name": "Vranje",
+    "country": "RS",
+    "coord": {
+      "lon": 21.90028,
+      "lat": 42.551392
+    }
+  },
+  {
+    "id": 788709,
+    "name": "Leskovac",
+    "country": "RS",
+    "coord": {
+      "lon": 21.94611,
+      "lat": 42.998058
+    }
+  },
+  {
+    "id": 789107,
+    "name": "Kraljevo",
+    "country": "RS",
+    "coord": {
+      "lon": 20.68944,
+      "lat": 43.72583
+    }
+  },
+  {
+    "id": 784024,
+    "name": "Zajecar",
+    "country": "RS",
+    "coord": {
+      "lon": 22.26405,
+      "lat": 43.90358
+    }
+  },
+  {
+    "id": 788975,
+    "name": "Krusevac",
+    "country": "RS",
+    "coord": {
+      "lon": 21.333891,
+      "lat": 43.580002
+    }
+  },
+  {
+    "id": 783920,
+    "name": "Zemun",
+    "country": "RS",
+    "coord": {
+      "lon": 20.40111,
+      "lat": 44.84306
+    }
+  },
+  {
+    "id": 787595,
+    "name": "Novi Pazar",
+    "country": "RS",
+    "coord": {
+      "lon": 20.51222,
+      "lat": 43.136669
+    }
+  },
+  {
+    "id": 789923,
+    "name": "Jagodina",
+    "country": "RS",
+    "coord": {
+      "lon": 21.26222,
+      "lat": 43.981392
+    }
+  },
+  {
+    "id": 787657,
+    "name": "Nis",
+    "country": "RS",
+    "coord": {
+      "lon": 21.90333,
+      "lat": 43.324718
+    }
+  },
+  {
+    "id": 3190776,
+    "name": "Sjenica",
+    "country": "RS",
+    "coord": {
+      "lon": 19.999439,
+      "lat": 43.27306
+    }
+  },
+  {
+    "id": 792680,
+    "name": "Belgrade",
+    "country": "RS",
+    "coord": {
+      "lon": 20.46513,
+      "lat": 44.804008
+    }
+  },
+  {
+    "id": 4957962,
+    "name": "Belgrade",
+    "country": "US",
+    "coord": {
+      "lon": -69.83255,
+      "lat": 44.447289
+    }
+  },
+  {
+    "id": 2643743,
+    "name": "London",
+    "country": "GB",
+    "coord": {
+      "lon": -0.12574,
+      "lat": 51.50853
+    }
+  },
+  {
+    "id": 2655603,
+    "name": "Birmingham",
+    "country": "GB",
+    "coord": {
+      "lon": -1.89983,
+      "lat": 52.481419
+    }
+  },
+  {
+    "id": 2644210,
+    "name": "Liverpool",
+    "country": "GB",
+    "coord": {
+      "lon": -2.97794,
+      "lat": 53.41058
+    }
+  },
+  {
+    "id": 6455259,
+    "name": "Paris",
+    "country": "FR",
+    "coord": {
+      "lon": 2.35236,
+      "lat": 48.856461
+    }
+  },
+  {
+    "id": 1850147,
+    "name": "Tokyo",
+    "country": "JP",
+    "coord": {
+      "lon": 139.691711,
+      "lat": 35.689499
+    }
+  },
+  {
+    "id": 2950159,
+    "name": "Berlin",
+    "country": "DE",
+    "coord": {
+      "lon": 13.41053,
+      "lat": 52.524368
+    }
+  },
+  {
+    "id": 6359304,
+    "name": "Madrid",
+    "country": "ES",
+    "coord": {
+      "lon": -3.68275,
+      "lat": 40.489349
+    }
+  },
+  {
+    "id": 3173435,
+    "name": "Milano",
+    "country": "IT",
+    "coord": {
+      "lon": 9.18951,
+      "lat": 45.464272
+    }
+  },
+  {
+    "id": 3169070,
+    "name": "Roma",
+    "country": "IT",
+    "coord": {
+      "lon": 12.4839,
+      "lat": 41.894741
+    }
+  },
+  {
+    "id": 524901,
+    "name": "Moscow",
+    "country": "RU",
+    "coord": {
+      "lon": 37.615555,
+      "lat": 55.75222
+    }
+  },
+  {
+    "id": 4542692,
+    "name": "Miami",
+    "country": "US",
+    "coord": {
+      "lon": -94.877457,
+      "lat": 36.874512
+    }
+  },
+  {
+    "id": 5128638,
+    "name": "New York",
+    "country": "US",
+    "coord": {
+      "lon": -75.499901,
+      "lat": 43.000351
+    }
+  },
+  {
+    "id": 5368361,
+    "name": "Los Angeles",
+    "country": "US",
+    "coord": {
+      "lon": -118.243683,
+      "lat": 34.052231
+    }
+  },
+  {
+    "id": 4229546,
+    "name": "Washington",
+    "country": "US",
+    "coord": {
+      "lon": -82.739311,
+      "lat": 33.73679
+    }
+  },
+  {
+    "id": 4317656,
+    "name": "Boston",
+    "country": "US",
+    "coord": {
+      "lon": -92.055679,
+      "lat": 29.883261
+    }
+  }
+  ]
