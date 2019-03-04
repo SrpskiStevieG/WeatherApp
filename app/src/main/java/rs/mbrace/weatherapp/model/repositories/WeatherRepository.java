@@ -25,4 +25,8 @@ public class WeatherRepository {
     public LiveData<List<CityEntity>> getAllCities(){
         return cityDAO.getAllCities();
     }
+
+    public LiveData<Integer> getCityID(String name, String countryCode){
+        return cityDAO.getCityID(name, countryCode);
+    }
 }

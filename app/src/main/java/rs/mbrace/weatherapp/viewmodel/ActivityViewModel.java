@@ -22,4 +22,8 @@ public class ActivityViewModel extends AndroidViewModel {
     public LiveData<List<CityEntity>> getAllCities(){
         return repository.getAllCities();
     }
+
+    public LiveData<Integer> getCityID(String name, String code){
+        return repository.getCityID(name, code);
+    }
 }
