@@ -17,7 +17,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import rs.mbrace.weatherapp.model.json.CityJSON;
+import rs.mbrace.weatherapp.model.json.City;
 import rs.mbrace.weatherapp.model.json.JacksonUtil;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
 
@@ -56,7 +56,7 @@ public abstract class WeatherDB extends RoomDatabase {
             String json = new String(buffer, StandardCharsets.UTF_8);
 
             //  JSON to POJO
-            List<CityJSON> cityList = JacksonUtil.getObjectMapper().readValue(json, new TypeReference<ArrayList<CityJSON>>() {
+            List<City> cityList = JacksonUtil.getObjectMapper().readValue(json, new TypeReference<ArrayList<City>>() {
             });
 
             //  Insert cities in new thread
@@ -68,11 +68,11 @@ public abstract class WeatherDB extends RoomDatabase {
         }
     }
 
-    private static class InsertCitiesTask extends AsyncTask<List<CityJSON>, Void, Void> {
+    private static class InsertCitiesTask extends AsyncTask<List<City>, Void, Void> {
 
         @Override
-        protected Void doInBackground(List<CityJSON>... cities) {
-            for (CityJSON city : cities[0]) {
+        protected Void doInBackground(List<City>... cities) {
+            for (City city : cities[0]) {
                 instance.cityDAO().insertCity(new CityEntity(city.getId(), city.getName(), city.getCountry()));
             }
             Log.i("roomDB", "finish");

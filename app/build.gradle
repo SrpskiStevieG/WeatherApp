@@ -22,6 +22,8 @@ ext {
     daggerVersion = '2.20'
     roomVersion = '2.1.0-alpha04'
     viewModel = '2.1.0-alpha02'
+    retrofitVersion = '2.5.0'
+    jacksonVersion = '2.9.8'
 }
 
 dependencies {
@@ -38,10 +40,14 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$viewModel"
     implementation 'com.facebook.stetho:stetho:1.5.0'
 
+    //  retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
     // jackson
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+    implementation "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "name",
         "country"
 })
-public class CityJSON {
+public class City {
 
     @JsonProperty("id")
     private Integer id;
