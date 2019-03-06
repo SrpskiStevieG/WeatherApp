@@ -3,10 +3,18 @@ package rs.mbrace.weatherapp.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import rs.mbrace.weatherapp.R;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
+import rs.mbrace.weatherapp.view.adapters.CityAdapter;
 import rs.mbrace.weatherapp.viewmodel.ActivityViewModel;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +25,6 @@ import android.widget.TextView;
 
 import com.facebook.stetho.Stetho;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +34,21 @@ public class MainActivity extends AppCompatActivity {
     private int cityID;
     private String cityName;
     private TextView cityNameTv;
+    private RecyclerView dbCitiesRv;
     private EditText searchCityEt;
+    private CityAdapter adapter;
+    public static final String TAG_CITY_CLICKED = "cityListener";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //  Method for viewing database in Chrome
         stethoInit();
 
         initViews();
-        dbInit();
+        initData();
 
         searchCityEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,28 +58,33 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                for (int j = 0; j < citiesNames.size(); j++) {
-                    if(citiesNames.get(j).toLowerCase().contains(charSequence.toString().toLowerCase())){
-                        Log.i("search", "city found: " + citiesNames.get(j));
-                    }
+                if(charSequence.length() > 0) {
+                    dbCitiesRv.setVisibility(View.VISIBLE);
+                    adapter.getFilter().filter(charSequence);
+                }else{
+                    dbCitiesRv.setVisibility(View.GONE);
                 }
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                if(!citiesNames.contains(editable.toString())){
-//                    Log.i("search", "no city found");
-//                }else{
-//                    Log.i("search", "city found: " + editable.toString());
-//                }
+
             }
         });
+
+        //  Register listener for the selected city
+        LocalBroadcastManager.getInstance(this).registerReceiver(cityReceiver, new IntentFilter(TAG_CITY_CLICKED));
     }
 
     private void initViews() {
-        cityNameTv = findViewById(R.id.selected_city);
+        cityNameTv = findViewById(R.id.selected_city_tv);
         searchCityEt = findViewById(R.id.search_city_et);
+        dbCitiesRv = findViewById(R.id.db_cities_rv);
+
+        LinearLayoutManager lManager = new LinearLayoutManager(this);
+        dbCitiesRv.setLayoutManager(lManager);
+        adapter = new CityAdapter(this);
+        dbCitiesRv.setAdapter(adapter);
     }
 
     private void stethoInit() {
@@ -92,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         Stetho.initialize(initializer);
     }
 
-    private void dbInit() {
+    private void initData() {
         final ActivityViewModel viewModel = ViewModelProviders.of(this)
                 .get(ActivityViewModel.class);
 
@@ -102,9 +118,26 @@ public class MainActivity extends AppCompatActivity {
                 citiesNames = new ArrayList<>();
                 for (int i = 0; i < cityEntities.size(); i++) {
                     citiesNames.add(cityEntities.get(i).getName() + "," + cityEntities.get(i).getCountry());
-                    Log.i("cityList", citiesNames.get(i));
                 }
+                adapter.setList(citiesNames);
             }
         });
     }
+
+    private BroadcastReceiver cityReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getStringExtra("selectedCity").equals("Search anyway")){
+                cityName = searchCityEt.getText().toString();
+            }else {
+                cityName = intent.getStringExtra("selectedCity");
+            }
+
+            cityNameTv.setText(cityName);
+            searchCityEt.getText().clear();
+            dbCitiesRv.setVisibility(View.GONE);
+
+            //TODO  Retrofit call
+        }
+    };
 }

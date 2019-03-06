@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_city_et" />
 
     <TextView
-        android:id="@+id/selected_city"
+        android:id="@+id/selected_city_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -48,12 +48,22 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/search_city_et" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/db_cities_rv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/textColorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/search_city_et"
+        app:layout_constraintStart_toStartOf="@+id/search_city_et"
+        app:layout_constraintTop_toBottomOf="@+id/search_city_et"
+        android:visibility="gone"/>
+
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selected_city" />
+        app:layout_constraintTop_toBottomOf="@+id/selected_city_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
