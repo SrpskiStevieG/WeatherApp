@@ -1,12 +1,18 @@
 package rs.mbrace.weatherapp.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rs.mbrace.weatherapp.R;
+import rs.mbrace.weatherapp.model.json.CurrentForecast;
+import rs.mbrace.weatherapp.model.network.RetrofitApi;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
 import rs.mbrace.weatherapp.view.adapters.CityAdapter;
 import rs.mbrace.weatherapp.viewmodel.ActivityViewModel;
@@ -22,6 +28,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 
@@ -30,13 +37,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityViewModel viewModel;
     private ArrayList<String> citiesNames;
-    private int cityID;
+    private long cityID;
     private String cityName;
     private TextView cityNameTv;
     private RecyclerView dbCitiesRv;
     private EditText searchCityEt;
     private CityAdapter adapter;
+    private Context ctx;
     public static final String TAG_CITY_CLICKED = "cityListener";
 
     @Override
@@ -49,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         initData();
+
+        ctx = this;
 
         searchCityEt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        final ActivityViewModel viewModel = ViewModelProviders.of(this)
+        viewModel = ViewModelProviders.of(this)
                 .get(ActivityViewModel.class);
 
         viewModel.getAllCities().observe(this, new Observer<List<CityEntity>>() {
@@ -131,13 +142,38 @@ public class MainActivity extends AppCompatActivity {
                 cityName = searchCityEt.getText().toString();
             }else {
                 cityName = intent.getStringExtra("selectedCity");
+
+                //  Get cityID from db
+                String[] cityArr = cityName.split(",");
+                String name = cityArr[0];
+                String code = cityArr[1];
+                viewModel.getCityID(name, code).observe((LifecycleOwner) ctx, new Observer<Long>() {
+                    @Override
+                    public void onChanged(Long id) {
+                        cityID = id;
+
+                        // Retrofit call
+                        Log.i("url", viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
+                        viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<CurrentForecast>() {
+                            @Override
+                            public void onResponse(Call<CurrentForecast> call, Response<CurrentForecast> response) {
+                                Log.i("currentForecast", response.body().getName());
+                            }
+
+                            @Override
+                            public void onFailure(Call<CurrentForecast> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
             }
 
             cityNameTv.setText(cityName);
             searchCityEt.getText().clear();
             dbCitiesRv.setVisibility(View.GONE);
 
-            //TODO  Retrofit call
+
         }
     };
 }

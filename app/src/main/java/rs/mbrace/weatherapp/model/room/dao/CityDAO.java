@@ -16,7 +16,7 @@ public interface CityDAO {
     LiveData<List<CityEntity>> getAllCities();
 
     @Query("SELECT id FROM CityEntity WHERE name = :name AND country = :country")
-    LiveData<Integer> getCityID(String name, String country);
+    LiveData<Long> getCityID(String name, String country);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCity(CityEntity city);
