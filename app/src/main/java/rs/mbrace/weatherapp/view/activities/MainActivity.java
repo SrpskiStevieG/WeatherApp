@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,6 +16,7 @@ import rs.mbrace.weatherapp.model.json.CurrentForecast;
 import rs.mbrace.weatherapp.model.network.RetrofitApi;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
 import rs.mbrace.weatherapp.view.adapters.CityAdapter;
+import rs.mbrace.weatherapp.view.adapters.ViewPagerAdapter;
 import rs.mbrace.weatherapp.viewmodel.ActivityViewModel;
 
 import android.content.BroadcastReceiver;
@@ -31,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView dbCitiesRv;
     private EditText searchCityEt;
     private CityAdapter adapter;
+    private ViewPager mViewPager;
+    private ViewPagerAdapter mViewPagerAdapter;
     private Context ctx;
+    private CurrentForecast forecast;
     public static final String TAG_CITY_CLICKED = "cityListener";
 
     @Override
@@ -96,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
         dbCitiesRv.setLayoutManager(lManager);
         adapter = new CityAdapter(this);
         dbCitiesRv.setAdapter(adapter);
+
+        mViewPager = findViewById(R.id.forecast_view_pager);
+        mViewPager.setOffscreenPageLimit(2);
+
+//        if (getArguments() != null) {
+//            int tabPosition = getArguments().getInt("taskTabNum");
+//            mViewPager.setCurrentItem(tabPosition - 1);
+//        }
+        TabLayout mTabLayout = findViewById(R.id.tab_layout);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     private void stethoInit() {
@@ -143,31 +159,9 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 cityName = intent.getStringExtra("selectedCity");
 
-                //  Get cityID from db
-                String[] cityArr = cityName.split(",");
-                String name = cityArr[0];
-                String code = cityArr[1];
-                viewModel.getCityID(name, code).observe((LifecycleOwner) ctx, new Observer<Long>() {
-                    @Override
-                    public void onChanged(Long id) {
-                        cityID = id;
-
-                        // Retrofit call
-                        Log.i("url", viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
-                        viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<CurrentForecast>() {
-                            @Override
-                            public void onResponse(Call<CurrentForecast> call, Response<CurrentForecast> response) {
-                                Log.i("currentForecast", response.body().getName());
-                            }
-
-                            @Override
-                            public void onFailure(Call<CurrentForecast> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
             }
+            mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cityName);
+            mViewPager.setAdapter(mViewPagerAdapter);
 
             cityNameTv.setText(cityName);
             searchCityEt.getText().clear();
