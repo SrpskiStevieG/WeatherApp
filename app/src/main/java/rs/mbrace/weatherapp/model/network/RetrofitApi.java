@@ -4,6 +4,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rs.mbrace.weatherapp.model.json.CurrentForecast;
+import rs.mbrace.weatherapp.model.json.FiveDayForecast;
 
 public interface RetrofitApi {
 
@@ -21,11 +22,11 @@ public interface RetrofitApi {
     Call<CurrentForecast> getCurrentForecast(@Query("id") long cityID, @Query("mode") String mode, @Query("APPID") String appID);
 
     @GET("forecast")
-    Call<CurrentForecast> getFiveDayForecast(@Query("q") String cityName, @Query("mode") String mode, @Query("APPID") String appID);
+    Call<FiveDayForecast> getFiveDayForecast(@Query("q") String cityName, @Query("mode") String mode, @Query("APPID") String appID);
 
     @GET("forecast")
-    Call<CurrentForecast> getFiveDayForecast(@Query("q") String cityName, @Query("country") String countryCode, @Query("mode") String mode, @Query("APPID") String appID);
+    Call<FiveDayForecast> getFiveDayForecast(@Query("q") String cityName, @Query("country") String countryCode, @Query("mode") String mode, @Query("APPID") String appID);
 
     @GET("forecast")
-    Call<CurrentForecast> getFiveDayForecast(@Query("id") long cityID, @Query("mode") String mode, @Query("APPID") String appID);
+    Call<FiveDayForecast> getFiveDayForecast(@Query("id") long cityID, @Query("mode") String mode, @Query("APPID") String appID);
 }

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
         "id",
         "name",
+        "coord",
         "country"
 })
 public class City {
@@ -21,6 +22,8 @@ public class City {
     private Integer id;
     @JsonProperty("name")
     private String name;
+    @JsonProperty("coord")
+    private Coordinates coord;
     @JsonProperty("country")
     private String country;
     @JsonIgnore
@@ -44,6 +47,16 @@ public class City {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonProperty("coord")
+    public Coordinates getCoord() {
+        return coord;
+    }
+
+    @JsonProperty("coord")
+    public void setCoord(Coordinates coord) {
+        this.coord = coord;
     }
 
     @JsonProperty("country")

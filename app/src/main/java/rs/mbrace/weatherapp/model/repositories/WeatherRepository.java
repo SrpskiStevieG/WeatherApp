@@ -36,28 +36,4 @@ public class WeatherRepository {
     public LiveData<Long> getCityID(String name, String countryCode){
         return cityDAO.getCityID(name, countryCode);
     }
-
-    public Call<CurrentForecast> getCurrentForecast(long id, String mode, String appID){
-        return api.getCurrentForecast(id, mode, appID);
-    }
-
-    public Call<CurrentForecast> getCurrentForecast(String cityName, String mode, String appID){
-        return api.getCurrentForecast(cityName, mode, appID);
-    }
-
-    public Call<CurrentForecast> getCurrentForecast(String cityName, String countryCode, String mode, String appID){
-        return api.getCurrentForecast(cityName, countryCode, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(long id, String mode, String appID){
-        return api.getFiveDayForecast(id, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(String cityName, String mode, String appID){
-        return api.getFiveDayForecast(cityName, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(String cityName, String countryCode, String mode, String appID){
-        return api.getFiveDayForecast(cityName, countryCode, mode, appID);
-    }
 }

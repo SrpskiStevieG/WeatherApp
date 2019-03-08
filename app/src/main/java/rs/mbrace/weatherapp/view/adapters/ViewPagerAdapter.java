@@ -12,10 +12,16 @@ import rs.mbrace.weatherapp.view.fragments.FiveDayForecastFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private String cityName;
+    private long cityID;
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, String city) {
         super(fm);
         this.cityName = city;
+    }
+
+    public ViewPagerAdapter(@NonNull FragmentManager fm, long id){
+        super(fm);
+        this.cityID = id;
     }
 
     @NonNull
@@ -25,13 +31,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 CurrentForecastFragment currentForecastFragment = new CurrentForecastFragment();
                 Bundle currentArgs = new Bundle();
-                currentArgs.putString("city", cityName);
+                currentArgs.putString("cityName", cityName);
+                currentArgs.putLong("cityID", cityID);
                 currentForecastFragment.setArguments(currentArgs);
                 return currentForecastFragment;
             case 1:
                 FiveDayForecastFragment fiveDayForecastFragment = new FiveDayForecastFragment();
                 Bundle fiveDayArgs = new Bundle();
-                fiveDayArgs.putString("city", cityName);
+                fiveDayArgs.putString("cityName", cityName);
+                fiveDayArgs.putLong("cityID", cityID);
                 fiveDayForecastFragment.setArguments(fiveDayArgs);
                 return fiveDayForecastFragment;
         }

@@ -156,18 +156,30 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if(intent.getStringExtra("selectedCity").equals("Search anyway")){
                 cityName = searchCityEt.getText().toString();
+
+                mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cityName);
+                mViewPager.setAdapter(mViewPagerAdapter);
             }else {
                 cityName = intent.getStringExtra("selectedCity");
 
+                String[] cityArr = cityName.split(",");
+                String name = cityArr[0];
+                String code = cityArr[1];
+
+                viewModel.getCityID(name, code).observe((LifecycleOwner) ctx, new Observer<Long>() {
+                    @Override
+                    public void onChanged(Long id) {
+                        cityID = id;
+
+                        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cityID);
+                        mViewPager.setAdapter(mViewPagerAdapter);
+                    }
+                });
             }
-            mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cityName);
-            mViewPager.setAdapter(mViewPagerAdapter);
 
             cityNameTv.setText(cityName);
             searchCityEt.getText().clear();
             dbCitiesRv.setVisibility(View.GONE);
-
-
         }
     };
 }

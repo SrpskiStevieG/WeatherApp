@@ -28,28 +28,4 @@ public class ActivityViewModel extends AndroidViewModel {
     public LiveData<Long> getCityID(String name, String code){
         return repository.getCityID(name, code);
     }
-
-    public Call<CurrentForecast> getCurrentForecast(long id, String mode, String appID){
-        return repository.getCurrentForecast(id, mode, appID);
-    }
-
-    public Call<CurrentForecast> getCurrentForecast(String cityName, String mode, String appID){
-        return repository.getCurrentForecast(cityName, mode, appID);
-    }
-
-    public Call<CurrentForecast> getCurrentForecast(String cityName, String countryCode, String mode, String appID){
-        return repository.getCurrentForecast(cityName, countryCode, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(long id, String mode, String appID){
-        return repository.getFiveDayForecast(id, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(String cityName, String mode, String appID){
-        return repository.getFiveDayForecast(cityName, mode, appID);
-    }
-
-    public Call<CurrentForecast> getFiveDayForecast(String cityName, String countryCode, String mode, String appID){
-        return repository.getFiveDayForecast(cityName, countryCode, mode, appID);
-    }
 }

@@ -18,11 +18,11 @@ import rs.mbrace.weatherapp.R;
 import rs.mbrace.weatherapp.model.json.CurrentForecast;
 import rs.mbrace.weatherapp.model.network.RetrofitApi;
 import rs.mbrace.weatherapp.viewmodel.ActivityViewModel;
+import rs.mbrace.weatherapp.viewmodel.CurrentForecastViewModel;
 
 public class CurrentForecastFragment extends Fragment {
 
     public static String TITLE = "Current";
-    private ActivityViewModel viewModel;
     private long cityID;
     private String cityName;
 
@@ -38,41 +38,43 @@ public class CurrentForecastFragment extends Fragment {
 
         final TextView textView = view.findViewById(R.id.textview);
 
-        if (getArguments() != null) {
-            cityName = getArguments().getString("city");
+        if(getArguments() != null) {
+            if (getArguments().getString("cityName") != null) {
+                cityName = getArguments().getString("cityName");
+            }
+
+            if(getArguments().getLong("cityID") != 0L){
+                cityID = getArguments().getLong("cityID");
+            }
         }
 
-        viewModel = ViewModelProviders.of(this)
-                .get(ActivityViewModel.class);
 
-        //  Get cityID from db
-        String[] cityArr = cityName.split(",");
-        if (cityArr.length > 1) {
-            String name = cityArr[0];
-            String code = cityArr[1];
+        CurrentForecastViewModel viewModel = ViewModelProviders.of(this)
+                .get(CurrentForecastViewModel.class);
 
-            viewModel.getCityID(name, code).observe(this, new Observer<Long>() {
+        //  Get cityID from db if cityID != 0,
+        //  else make a call to server using the city name
+        if(cityID != 0L){
+            // Retrofit call using cityID
+            Log.i("url", viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
+            viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<CurrentForecast>() {
                 @Override
-                public void onChanged(Long id) {
-                    cityID = id;
+                public void onResponse(Call<CurrentForecast> call, Response<CurrentForecast> response) {
+                    if(response.isSuccessful()){
+                        Log.i("currentForecast", response.body().getName());
+                        textView.setText(response.body().getName());
+                    }else{
+                        textView.setText("No forecast found for that city");
+                    }
+                }
 
-                    // Retrofit call
-                    Log.i("url", viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
-                    viewModel.getCurrentForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<CurrentForecast>() {
-                        @Override
-                        public void onResponse(Call<CurrentForecast> call, Response<CurrentForecast> response) {
-                            Log.i("currentForecast", response.body().getName());
-                            textView.setText(response.body().getName());
-                        }
-
-                        @Override
-                        public void onFailure(Call<CurrentForecast> call, Throwable t) {
-                            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                @Override
+                public void onFailure(Call<CurrentForecast> call, Throwable t) {
+                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
+        }else{
+            //  Retrofit call using city name
             viewModel.getCurrentForecast(cityName, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<CurrentForecast>() {
                 @Override
                 public void onResponse(Call<CurrentForecast> call, Response<CurrentForecast> response) {

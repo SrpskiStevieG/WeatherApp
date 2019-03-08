@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "message",
         "country",
         "sunrise",
-        "sunset"
+        "sunset",
+        "pod"
 })
 public class Sys {
 
@@ -32,6 +33,8 @@ public class Sys {
     private Integer sunrise;
     @JsonProperty("sunset")
     private Integer sunset;
+    @JsonProperty("pod")
+    private String pod;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -93,6 +96,16 @@ public class Sys {
     @JsonProperty("sunset")
     public void setSunset(Integer sunset) {
         this.sunset = sunset;
+    }
+
+    @JsonProperty("pod")
+    public String getPod() {
+        return pod;
+    }
+
+    @JsonProperty("pod")
+    public void setPod(String pod) {
+        this.pod = pod;
     }
 
     @JsonAnyGetter
