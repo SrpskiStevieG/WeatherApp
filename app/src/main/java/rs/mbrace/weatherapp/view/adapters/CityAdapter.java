@@ -101,6 +101,9 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.MyViewHolder> 
                         filteredList.add(city);
                     }
                 }
+                if(filteredList.size() == 0){
+                    filteredList.add("Search for " + constraint.toString());
+                }
             }
 
             FilterResults results = new FilterResults();
@@ -113,9 +116,6 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.MyViewHolder> 
         protected void publishResults(CharSequence constraint, FilterResults results) {
             cityList.clear();
             cityList.addAll((Collection<? extends String>) results.values);
-            if(cityList.size() == 0){
-                cityList.add("Search anyway");
-            }
             notifyDataSetChanged();
         }
     };

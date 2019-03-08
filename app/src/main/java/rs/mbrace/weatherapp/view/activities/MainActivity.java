@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver cityReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getStringExtra("selectedCity").equals("Search anyway")){
+            if(intent.getStringExtra("selectedCity").contains("Search for")){
                 cityName = searchCityEt.getText().toString();
 
                 mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), cityName);
