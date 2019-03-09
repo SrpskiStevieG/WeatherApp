@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import rs.mbrace.weatherapp.view.fragments.CurrentForecastFragment;
-import rs.mbrace.weatherapp.view.fragments.FiveDayForecastFragment;
+import rs.mbrace.weatherapp.view.fragments.TodayFragment;
+import rs.mbrace.weatherapp.view.fragments.ForecastFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private String cityName;
@@ -29,19 +29,19 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                CurrentForecastFragment currentForecastFragment = new CurrentForecastFragment();
+                TodayFragment todayFragment = new TodayFragment();
                 Bundle currentArgs = new Bundle();
                 currentArgs.putString("cityName", cityName);
                 currentArgs.putLong("cityID", cityID);
-                currentForecastFragment.setArguments(currentArgs);
-                return currentForecastFragment;
+                todayFragment.setArguments(currentArgs);
+                return todayFragment;
             case 1:
-                FiveDayForecastFragment fiveDayForecastFragment = new FiveDayForecastFragment();
+                ForecastFragment forecastFragment = new ForecastFragment();
                 Bundle fiveDayArgs = new Bundle();
                 fiveDayArgs.putString("cityName", cityName);
                 fiveDayArgs.putLong("cityID", cityID);
-                fiveDayForecastFragment.setArguments(fiveDayArgs);
-                return fiveDayForecastFragment;
+                forecastFragment.setArguments(fiveDayArgs);
+                return forecastFragment;
         }
         return null;
     }
@@ -56,9 +56,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:
-                return CurrentForecastFragment.TITLE;
+                return TodayFragment.TITLE;
             case 1:
-                return FiveDayForecastFragment.TITLE;
+                return ForecastFragment.TITLE;
         }
         return super.getPageTitle(position);
     }

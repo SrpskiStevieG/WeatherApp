@@ -8,12 +8,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rs.mbrace.weatherapp.R;
-import rs.mbrace.weatherapp.model.json.CurrentForecast;
-import rs.mbrace.weatherapp.model.network.RetrofitApi;
+import rs.mbrace.weatherapp.model.json.TodayWeather;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
 import rs.mbrace.weatherapp.view.adapters.CityAdapter;
 import rs.mbrace.weatherapp.view.adapters.ViewPagerAdapter;
@@ -26,11 +22,9 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.material.tabs.TabLayout;
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
     private Context ctx;
-    private CurrentForecast forecast;
+    private TodayWeather forecast;
     public static final String TAG_CITY_CLICKED = "cityListener";
 
     @Override

@@ -5,9 +5,6 @@ import android.app.Application;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import retrofit2.Call;
-import rs.mbrace.weatherapp.model.json.City;
-import rs.mbrace.weatherapp.model.json.CurrentForecast;
 import rs.mbrace.weatherapp.model.network.RetrofitApi;
 import rs.mbrace.weatherapp.model.network.RetrofitService;
 import rs.mbrace.weatherapp.model.room.dao.CityDAO;

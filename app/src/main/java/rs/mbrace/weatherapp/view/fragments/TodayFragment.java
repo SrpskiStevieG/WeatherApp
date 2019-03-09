@@ -14,19 +14,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import rs.mbrace.weatherapp.R;
-import rs.mbrace.weatherapp.model.json.CurrentForecast;
-import rs.mbrace.weatherapp.model.json.FiveDayForecast;
+import rs.mbrace.weatherapp.model.json.TodayWeather;
 import rs.mbrace.weatherapp.model.network.RetrofitApi;
-import rs.mbrace.weatherapp.viewmodel.CurrentForecastViewModel;
-import rs.mbrace.weatherapp.viewmodel.FiveDayForecastViewModel;
+import rs.mbrace.weatherapp.viewmodel.TodayViewModel;
 
-public class FiveDayForecastFragment extends Fragment {
+public class TodayFragment extends Fragment {
 
-    public static String TITLE = "5 day";
+    public static String TITLE = "Current";
     private long cityID;
     private String cityName;
 
-    public FiveDayForecastFragment() {
+    public TodayFragment() {
         // Required empty public constructor
     }
 
@@ -34,10 +32,9 @@ public class FiveDayForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_five_day_forecast, container, false);
+        View view = inflater.inflate(R.layout.fragment_today_weather, container, false);
 
-        final TextView textView = view.findViewById(R.id.five_day_tv);
+        final TextView textView = view.findViewById(R.id.textview);
 
         if(getArguments() != null) {
             if (getArguments().getString("cityName") != null) {
@@ -50,45 +47,45 @@ public class FiveDayForecastFragment extends Fragment {
         }
 
 
-        FiveDayForecastViewModel viewModel = ViewModelProviders.of(this)
-                .get(FiveDayForecastViewModel.class);
+        TodayViewModel viewModel = ViewModelProviders.of(this)
+                .get(TodayViewModel.class);
 
         //  Get cityID from db if cityID != 0,
         //  else make a call to server using the city name
         if(cityID != 0L){
             // Retrofit call using cityID
-            Log.i("url", viewModel.getFiveDayForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
-            viewModel.getFiveDayForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<FiveDayForecast>() {
+            Log.i("url", viewModel.getTodayWeather(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
+            viewModel.getTodayWeather(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<TodayWeather>() {
                 @Override
-                public void onResponse(Call<FiveDayForecast> call, Response<FiveDayForecast> response) {
+                public void onResponse(Call<TodayWeather> call, Response<TodayWeather> response) {
                     if(response.isSuccessful()){
-                        Log.i("currentForecast", response.body().getCity().getName());
-                        textView.setText(response.body().getCity().getName() + " 5 days");
+                        Log.i("currentForecast", response.body().getName());
+                        textView.setText(response.body().getName());
                     }else{
                         textView.setText("No forecast found for that city");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<FiveDayForecast> call, Throwable t) {
+                public void onFailure(Call<TodayWeather> call, Throwable t) {
                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }else{
             //  Retrofit call using city name
-            viewModel.getFiveDayForecast(cityName, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<FiveDayForecast>() {
+            viewModel.getTodayWeather(cityName, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<TodayWeather>() {
                 @Override
-                public void onResponse(Call<FiveDayForecast> call, Response<FiveDayForecast> response) {
+                public void onResponse(Call<TodayWeather> call, Response<TodayWeather> response) {
                     Log.i("currentForecast", call.request().url().toString());
                     if(response.isSuccessful()) {
-                        textView.setText(response.body().getCity().getName() + " 5 days");
+                        textView.setText(response.body().getName());
                     }else{
                         textView.setText("No forecast found for that city");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<FiveDayForecast> call, Throwable t) {
+                public void onFailure(Call<TodayWeather> call, Throwable t) {
                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

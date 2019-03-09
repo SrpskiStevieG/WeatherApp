@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "list",
         "city"
 })
-public class FiveDayForecast {
+public class Forecast {
 
     @JsonProperty("cod")
     private String cod;

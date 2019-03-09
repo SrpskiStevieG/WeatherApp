@@ -7,8 +7,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import retrofit2.Call;
-import rs.mbrace.weatherapp.model.json.CurrentForecast;
 import rs.mbrace.weatherapp.model.repositories.WeatherRepository;
 import rs.mbrace.weatherapp.model.room.entities.CityEntity;
 
