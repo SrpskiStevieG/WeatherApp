@@ -20,7 +20,7 @@ import rs.mbrace.weatherapp.viewmodel.ForecastViewModel;
 
 public class ForecastFragment extends Fragment {
 
-    public static String TITLE = "5 day";
+    public static String TITLE = "Forecast";
     private long cityID;
     private String cityName;
 

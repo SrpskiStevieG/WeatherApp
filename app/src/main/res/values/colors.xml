@@ -6,4 +6,9 @@
 
     <color name="textColorWhite">#FFFFFF</color>
     <color name="textColorBlack">#000000</color>
+
+    <color name="day_clear_bg">#03A9F4</color>
+    <color name="day_light_rain_bg">#93A4CF</color>
+    <color name="day_heavy_rain_bg">#363C5E</color>
+    <color name="night_bg">#1F1F1F</color>
 </resources>

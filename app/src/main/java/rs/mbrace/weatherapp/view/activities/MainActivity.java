@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(charSequence.length() > 0) {
                     dbCitiesRv.setVisibility(View.VISIBLE);
+                    dbCitiesRv.bringToFront();
                     adapter.getFilter().filter(charSequence);
                 }else{
                     dbCitiesRv.setVisibility(View.GONE);
