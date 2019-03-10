@@ -5,11 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.TodayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/five_day_tv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forecast_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="five day" />
-
+        android:layout_height="wrap_content"/>
 </FrameLayout>
