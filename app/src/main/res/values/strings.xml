@@ -4,4 +4,5 @@
     <string name="city_name">City: </string>
     <string name="wind_lbl">Wind: </string>
     <string name="humidity_lbl">Humidity: </string>
+    <string name="no_result_lbl">No forecast found for that city</string>
 </resources>

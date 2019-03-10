@@ -1,19 +1,13 @@
 package rs.mbrace.weatherapp.view.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.facebook.stetho.common.ListUtil;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,11 +41,13 @@ public class ForecastFragment extends Fragment {
 
         weatherList = new ArrayList<>();
 
-        RecyclerView forecastRv = view.findViewById(R.id.forecast_rv);
+        final RecyclerView forecastRv = view.findViewById(R.id.forecast_rv);
         LinearLayoutManager lManager = new LinearLayoutManager(getContext());
         forecastRv.setLayoutManager(lManager);
         final ForecastAdapter adapter = new ForecastAdapter(getContext(), weatherList);
         forecastRv.setAdapter(adapter);
+
+        final TextView noResultTv = view.findViewById(R.id.no_result);
 
         if(getArguments() != null) {
             if (getArguments().getString("cityName") != null) {
@@ -71,12 +67,13 @@ public class ForecastFragment extends Fragment {
         //  else make a call to server using the city name
         if(cityID != 0L){
             // Retrofit call using cityID
-            Log.i("url", viewModel.getForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
             viewModel.getForecast(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<Forecast>() {
                 @Override
                 public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                     if(response.isSuccessful()){
-                        Log.i("currentForecast", response.body().getCity().getName());
+                        noResultTv.setVisibility(View.GONE);
+                        forecastRv.setVisibility(View.VISIBLE);
+
                         List<rs.mbrace.weatherapp.model.json.List> firstDay = response.body().getList().subList(0, 8);
                         List<rs.mbrace.weatherapp.model.json.List> secondDay = response.body().getList().subList(8, 16);
                         List<rs.mbrace.weatherapp.model.json.List> thirdDay = response.body().getList().subList(16, 24);
@@ -91,7 +88,8 @@ public class ForecastFragment extends Fragment {
 
                         adapter.setList(weatherList);
                     }else{
-//                        textView.setText("No forecast found for that city");
+                        noResultTv.setVisibility(View.VISIBLE);
+                        forecastRv.setVisibility(View.GONE);
                     }
                 }
 
@@ -105,8 +103,10 @@ public class ForecastFragment extends Fragment {
             viewModel.getForecast(cityName, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<Forecast>() {
                 @Override
                 public void onResponse(Call<Forecast> call, Response<Forecast> response) {
-                    Log.i("currentForecast", call.request().url().toString());
                     if(response.isSuccessful()) {
+                        noResultTv.setVisibility(View.GONE);
+                        forecastRv.setVisibility(View.VISIBLE);
+
                         List<rs.mbrace.weatherapp.model.json.List> firstDay = response.body().getList().subList(0, 8);
                         List<rs.mbrace.weatherapp.model.json.List> secondDay = response.body().getList().subList(8, 16);
                         List<rs.mbrace.weatherapp.model.json.List> thirdDay = response.body().getList().subList(16, 24);
@@ -121,7 +121,8 @@ public class ForecastFragment extends Fragment {
 
                         adapter.setList(weatherList);
                     }else{
-//                        textView.setText("No forecast found for that city");
+                        noResultTv.setVisibility(View.VISIBLE);
+                        forecastRv.setVisibility(View.GONE);
                     }
                 }
 
@@ -134,5 +135,4 @@ public class ForecastFragment extends Fragment {
 
         return view;
     }
-
 }

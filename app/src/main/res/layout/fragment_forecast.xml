@@ -5,6 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.TodayFragment">
 
+    <TextView
+        android:id="@+id/no_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/night_bg"
+        android:text="@string/no_result_lbl"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecast_rv"
         android:layout_width="match_parent"

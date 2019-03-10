@@ -1,14 +1,12 @@
 package rs.mbrace.weatherapp.view.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,6 +24,7 @@ public class TodayFragment extends Fragment {
     private long cityID;
     private String cityName;
     private ConstraintLayout containerLayout;
+    private TextView noResultTv;
     private ImageView icon;
     private TextView tempTv;
     private TextView descriptionTv;
@@ -44,6 +43,7 @@ public class TodayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today_weather, container, false);
 
         containerLayout = view.findViewById(R.id.container);
+        noResultTv = view.findViewById(R.id.no_result);
         icon = view.findViewById(R.id.icon);
         tempTv = view.findViewById(R.id.temperature);
         descriptionTv = view.findViewById(R.id.description);
@@ -69,15 +69,13 @@ public class TodayFragment extends Fragment {
         //  else make a call to server using the city name
         if(cityID != 0L){
             // Retrofit call using cityID
-            Log.i("url", viewModel.getTodayWeather(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).request().url().toString());
             viewModel.getTodayWeather(cityID, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<TodayWeather>() {
                 @Override
                 public void onResponse(Call<TodayWeather> call, Response<TodayWeather> response) {
                     if(response.isSuccessful()){
-                        Log.i("currentForecast", response.body().getName());
                         fillData(response);
                     }else{
-                        descriptionTv.setText("No forecast found for that city");
+                        noResultFound();
                     }
                 }
 
@@ -91,11 +89,10 @@ public class TodayFragment extends Fragment {
             viewModel.getTodayWeather(cityName, RetrofitApi.JSON_MODE_PATH, RetrofitApi.API_PATH).enqueue(new Callback<TodayWeather>() {
                 @Override
                 public void onResponse(Call<TodayWeather> call, Response<TodayWeather> response) {
-                    Log.i("currentForecast", call.request().url().toString());
                     if(response.isSuccessful()) {
                         fillData(response);
                     }else{
-                        descriptionTv.setText("No forecast found for that city");
+                        noResultFound();
                     }
                 }
 
@@ -109,7 +106,25 @@ public class TodayFragment extends Fragment {
         return view;
     }
 
+    private void noResultFound() {
+        noResultTv.setVisibility(View.VISIBLE);
+        icon.setVisibility(View.GONE);
+        tempTv.setVisibility(View.GONE);
+        descriptionTv.setVisibility(View.GONE);
+        tempMinMaxTv.setVisibility(View.GONE);
+        windTv.setVisibility(View.GONE);
+        humidityTv.setVisibility(View.GONE);
+    }
+
     private void fillData(Response<TodayWeather> response){
+
+        noResultTv.setVisibility(View.GONE);
+        icon.setVisibility(View.VISIBLE);
+        tempTv.setVisibility(View.VISIBLE);
+        descriptionTv.setVisibility(View.VISIBLE);
+        tempMinMaxTv.setVisibility(View.VISIBLE);
+        windTv.setVisibility(View.VISIBLE);
+        humidityTv.setVisibility(View.VISIBLE);
 
         TodayWeather today = response.body();
 
