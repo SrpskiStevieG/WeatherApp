@@ -29,7 +29,9 @@ public class TodayFragment extends Fragment {
     private TextView tempTv;
     private TextView descriptionTv;
     private TextView tempMinMaxTv;
+    private TextView windLbl;
     private TextView windTv;
+    private TextView humidityLbl;
     private TextView humidityTv;
 
     public TodayFragment() {
@@ -48,7 +50,9 @@ public class TodayFragment extends Fragment {
         tempTv = view.findViewById(R.id.temperature);
         descriptionTv = view.findViewById(R.id.description);
         tempMinMaxTv = view.findViewById(R.id.temp_min_max);
+        windLbl = view.findViewById(R.id.wind_lbl);
         windTv = view.findViewById(R.id.wind_tv);
+        humidityLbl = view.findViewById(R.id.humidity_lbl);
         humidityTv = view.findViewById(R.id.humidity_tv);
 
         if(getArguments() != null) {
@@ -112,7 +116,9 @@ public class TodayFragment extends Fragment {
         tempTv.setVisibility(View.GONE);
         descriptionTv.setVisibility(View.GONE);
         tempMinMaxTv.setVisibility(View.GONE);
+        windLbl.setVisibility(View.GONE);
         windTv.setVisibility(View.GONE);
+        humidityLbl.setVisibility(View.GONE);
         humidityTv.setVisibility(View.GONE);
     }
 
@@ -123,7 +129,9 @@ public class TodayFragment extends Fragment {
         tempTv.setVisibility(View.VISIBLE);
         descriptionTv.setVisibility(View.VISIBLE);
         tempMinMaxTv.setVisibility(View.VISIBLE);
+        windLbl.setVisibility(View.VISIBLE);
         windTv.setVisibility(View.VISIBLE);
+        humidityLbl.setVisibility(View.VISIBLE);
         humidityTv.setVisibility(View.VISIBLE);
 
         TodayWeather today = response.body();

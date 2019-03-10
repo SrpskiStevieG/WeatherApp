@@ -11,7 +11,7 @@
         android:id="@+id/no_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/night_bg"
+        android:textColor="@color/textColorWhite"
         android:textSize="20sp"
         android:text="@string/no_result_lbl"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,6 +78,7 @@
         android:text="@string/wind_lbl"
         android:textColor="@color/textColorWhite"
         android:textSize="30sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/humidity_lbl"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -99,6 +100,7 @@
         android:text="@string/humidity_lbl"
         android:textColor="@color/textColorWhite"
         android:textSize="30sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
