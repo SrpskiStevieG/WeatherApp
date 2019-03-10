@@ -131,7 +131,7 @@ public class TodayFragment extends Fragment {
         switch (today.getWeather().get(0).getIcon()){
             case "01d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_sun));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_clear_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.clear_sky_bg));
                 break;
             case "01n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_moon));
@@ -139,7 +139,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "02d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_sun));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_clear_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "02n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_moon));
@@ -147,7 +147,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "03d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_light_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "03n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud));
@@ -155,7 +155,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "04d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_light_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "04n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud));
@@ -163,7 +163,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "09d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_rain));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_heavy_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.heavy_rain_bg));
                 break;
             case "09n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_rain));
@@ -171,7 +171,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "10d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_drizzle_sun));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_light_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "10n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_drizzle_moon));
@@ -179,7 +179,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "11d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_lightning));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_heavy_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.heavy_rain_bg));
                 break;
             case "11n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_lightning));
@@ -187,7 +187,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "13d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_snow));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_light_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "13n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_snow));
@@ -195,7 +195,7 @@ public class TodayFragment extends Fragment {
                 break;
             case "50d":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_fog));
-                containerLayout.setBackgroundColor(getResources().getColor(R.color.day_light_rain_bg));
+                containerLayout.setBackground(getResources().getDrawable(R.drawable.light_rain_bg));
                 break;
             case "50n":
                 icon.setImageDrawable(getResources().getDrawable(R.drawable.ic_cloud_fog));

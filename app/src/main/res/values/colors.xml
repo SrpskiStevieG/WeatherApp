@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1F1F1F</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFC107</color>
 
     <color name="textColorWhite">#FFFFFF</color>
     <color name="textColorBlack">#000000</color>
 
     <color name="day_clear_bg">#03A9F4</color>
     <color name="day_light_rain_bg">#93A4CF</color>
+    <color name="day_light_rain_alt_bg">#5C798F</color>
     <color name="day_heavy_rain_bg">#363C5E</color>
+    <color name="day_heavy_rain_alt_bg">#2B303C</color>
     <color name="night_bg">#1F1F1F</color>
+    <color name="light_bg">#A09F9F</color>
 </resources>

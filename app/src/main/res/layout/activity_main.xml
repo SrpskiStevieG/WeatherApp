@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".view.activities.MainActivity">
 
     <ImageView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:tint="@color/textColorWhite"
         android:src="@drawable/ic_search_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +25,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/search_city_hint"
+        android:textColorHint="@color/light_bg"
+        android:textColor="@color/textColorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +39,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/city_name"
         android:textSize="20sp"
+        android:textColor="@color/textColorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_city_et" />
 
@@ -46,6 +51,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:textSize="20sp"
+        android:textColor="@color/textColorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/search_city_et" />
@@ -54,7 +60,7 @@
         android:id="@+id/db_cities_rv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/textColorWhite"
+        android:background="@drawable/city_bg"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/search_city_et"
         app:layout_constraintStart_toStartOf="@+id/search_city_et"
@@ -71,7 +77,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/textColorWhite"/>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/forecast_view_pager"

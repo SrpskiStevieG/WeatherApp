@@ -12,10 +12,12 @@
         android:textColor="@color/night_bg"
         android:text="@string/no_result_lbl"
         android:textSize="20sp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecast_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@color/light_bg"/>
 </FrameLayout>
